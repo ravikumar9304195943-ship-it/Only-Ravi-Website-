@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only Ravi 9.6 • Free Fire Sensitivity</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:#090b12;color:#fff;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 10%,#ff1e1e33,transparent 35%),radial-gradient(circle at 80% 80%,#ff7b0030,transparent 35%);pointer-events:none}
+.wrap{max-width:760px;margin:auto;padding:24px 15px 50px;position:relative}.card{background:#111522ee;border:1px solid #ffffff18;border-radius:22px;padding:24px;box-shadow:0 18px 50px #0008;margin-bottom:18px}
+.logo{font-size:32px;font-weight:900;text-align:center}.logo span{color:#ff3131}.sub{text-align:center;color:#aeb5c7;margin:8px 0 22px}
+button,.btn{border:0;border-radius:13px;padding:13px 18px;font-size:16px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
+.primary{background:#ff3030;color:white;width:100%}.dark{background:#252b3a;color:white}.green{background:#16a34a;color:white;width:100%}
+.center{text-align:center}.small{font-size:13px;color:#9ca3b5;line-height:1.5}
+.hidden{display:none}.q{margin:18px 0}.q label.title{display:block;font-weight:800;margin-bottom:9px}
+input,select{width:100%;padding:13px;border-radius:12px;border:1px solid #333a4d;background:#0c101a;color:white;font-size:16px;outline:none}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:9px}.opt{background:#1b2130;border:1px solid #30384c;padding:12px;border-radius:12px;cursor:pointer;text-align:center;font-weight:700}.opt.active{border-color:#ff3434;background:#35171b}
+.result{border:1px solid #ff343466;background:#17111a;border-radius:18px;padding:18px;margin-top:18px}.stat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ffffff12}.stat:last-child{border:0}
+.badge{display:inline-block;background:#2a2030;color:#ff8585;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:800}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="gate" class="card center">
+    <div class="logo">ONLY <span>RAVI 9.6</span></div>
+    <div class="sub">FREE FIRE SENSITIVITY</div>
+    <h2>🔒 Pehle YouTube Channel Join Karo</h2>
+    <p>Website use karne ke liye mere YouTube channel ko subscribe karne ke baad wapas is page par aao.</p>
+    <a class="btn primary" href="https://www.youtube.com/@Only_Ravi9.6" target="_blank" rel="noopener">▶ Subscribe on YouTube</a>
+    <br><br>
+    <button class="green" onclick="unlock()">✅ Maine Subscribe Kar Liya — Continue</button>
+    <p class="small">Note: Normal website YouTube se subscription ko automatically verify nahi kar sakti. Ye button user ko aage badhne deta hai.</p>
+  </div>
+
+  <div id="app" class="hidden">
+    <div class="card">
+      <div class="logo">🎯 <span>RAVI SENSI</span></div>
+      <div class="sub">Apni details bharo aur sensitivity dekho</div>
+
+      <div class="q">
+        <label class="title">1. Which phone do you have?</label>
+        <input id="phone" placeholder="Apne phone ka naam likho, jaise OPPO A18">
+      </div>
+
+      <div class="q">
+        <label class="title">2. Which gun do you want?</label>
+        <div class="opts" id="guns">
+          <div class="opt" data-v="M1887">A. M1887</div>
+          <div class="opt" data-v="Desert Eagle">B. Desert Eagle</div>
+          <div class="opt" data-v="Woodpecker">C. Woodpecker</div>
+          <div class="opt" data-v="UMP">D. UMP</div>
+        </div>
+      </div>
+
+      <div class="q">
+        <label class="title">3. How much of a finger player are you?</label>
+        <input id="finger" list="fingerlist" placeholder="2 finger / 3 finger / 4 finger / 6 finger ya kuch aur likho">
+        <datalist id="fingerlist"><option value="2 finger"><option value="3 finger"><option value="4 finger"><option value="6 finger"></datalist>
+      </div>
+
+      <div class="q">
+        <label class="title">4. What do you wear to games?</label>
+        <div class="opts" id="gear">
+          <div class="opt" data-v="Finger gloves">A. Finger gloves</div>
+          <div class="opt" data-v="No finger gloves">B. No finger gloves</div>
+          <div class="opt" data-v="Both">C. Both</div>
+          <div class="opt" data-v="Powder">D. Powder</div>
+        </div>
+      </div>
+
+      <button class="primary" onclick="getSensi()">🔥 GET MY SENSITIVITY</button>
+      <div id="result"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CHANNEL="https://www.youtube.com/@Only_Ravi9.6";
+let chosenGun="", chosenGear="";
+function unlock(){
+  localStorage.setItem("ravi_gate","1");
+  document.getElementById("gate").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+}
+if(localStorage.getItem("ravi_gate")==="1") unlock();
+
+document.querySelectorAll("#guns .opt").forEach(x=>x.onclick=()=>{document.querySelectorAll("#guns .opt").forEach(y=>y.classList.remove("active"));x.classList.add("active");chosenGun=x.dataset.v});
+document.querySelectorAll("#gear .opt").forEach(x=>x.onclick=()=>{document.querySelectorAll("#gear .opt").forEach(y=>y.classList.remove("active"));x.classList.add("active");chosenGear=x.dataset.v});
+
+function getSensi(){
+ const phone=document.getElementById("phone").value.trim();
+ const finger=document.getElementById("finger").value.trim();
+ if(!phone||!chosenGun||!finger||!chosenGear){alert("Please sabhi 4 questions complete karo.");return;}
+
+ // Default example preset. Is section ko baad mein tumhare exact sensitivity table se fill kiya ja sakta hai.
+ let s={general:195,red:195,x2:180,x4:165,sniper:100,free:200,fire:52,aim:"Default"};
+ let note="Ye abhi demo/default preset hai. Exact phone + gun + finger + gloves ke hisab se tumhara sensitivity database is section mein add kiya ja sakta hai.";
+
+ const p=phone.toLowerCase();
+ if(p.includes("oppo a18") && finger.toLowerCase().includes("2")){
+   note="OPPO A18 + 2 Finger preset.";
+ }
+ document.getElementById("result").innerHTML=`
+ <div class="result">
+   <span class="badge">${phone}</span> <span class="badge">${chosenGun}</span>
+   <h2>🎯 Tumhari Sensitivity</h2>
+   <div class="stat"><b>General</b><b>${s.general}</b></div>
+   <div class="stat"><b>Red Dot</b><b>${s.red}</b></div>
+   <div class="stat"><b>2× Scope</b><b>${s.x2}</b></div>
+   <div class="stat"><b>4× Scope</b><b>${s.x4}</b></div>
+   <div class="stat"><b>Sniper Scope</b><b>${s.sniper}</b></div>
+   <div class="stat"><b>Free Look</b><b>${s.free}</b></div>
+   <div class="stat"><b>Fire Button</b><b>${s.fire}%</b></div>
+   <div class="stat"><b>Aim Precision</b><b>${s.aim}</b></div>
+   <p class="small">${note}<br>Finger: ${finger} • Gear: ${chosenGear}</p>
+ </div>`;
+}
+</script>
+</body>
+</html>
